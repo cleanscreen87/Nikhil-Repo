@@ -1,0 +1,15 @@
+---
+- name: Update AD user Attribute employeeType
+  hosts: ad_servers
+  gather_facts : no
+
+  vars:
+    ad_username : "G538164"
+    ad_employeeType : "Ansible"
+
+  tasks:
+
+    - name : Update EmployeeType Attribute
+      win_shell:
+        Set-Aduser -Identity "{{ad_username}}" -Replace @{employeeType ="{{ad_employeeType}}"}
+      register : Update_result
