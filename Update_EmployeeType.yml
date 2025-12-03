@@ -1,19 +1,22 @@
 ---
-  collections:
-  - name: ansible.windows
-  - name: community.windows
-- name: Update AD user Attribute employeeType
+- name: Update AD user attribute employeeType
   hosts: ad_servers
-  gather_facts : no
+  gather_facts: no
+  collections:
+    - ansible.windows
+    - community.windows
 
   vars:
-    ad_username : "G538164"
-    ad_employeeType : "Ansible"
+    ad_username: "G538164"
+    ad_employeeType: "Ansible"
 
   tasks:
+    - name: Update EmployeeType attribute
+      win_shell: |
+        Import-Module ActiveDirectory
+        Set-ADUser -Identity "{{ ad_username }}" -Replace @{employeeType="{{ ad_employeeType }}"}
+      register: update_result
 
-    - name : Update EmployeeType Attribute
-      win_shell:
-        Import-Module Active Directory
-        Set-Aduser -Identity "{{ad_username}}" -Replace @{employeeType ="{{ad_employeeType}}"}
-      register : Update_result
+    - debug:
+        var: update_result.stdout
+
