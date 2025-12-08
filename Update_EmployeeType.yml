@@ -15,7 +15,8 @@
     - name: Update EmployeeType Attribute
       win_shell: |
         Import-Module ActiveDirectory
-        Set-ADUser -Identity "{{ ad_username }}" -Replace @{employeeType="{{ ad_employeeType }}"}
+        Get-ADUser -Identity G538164
+        # Set-ADUser -Identity "{{ ad_username }}" -Replace @{employeeType="{{ ad_employeeType }}"}
 
 
 
