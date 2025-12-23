@@ -1,0 +1,6 @@
+---
+- name: Test WinRM NTLM
+  hosts: ad_servers
+  gather_facts: no
+  tasks:
+    - win_ping:
