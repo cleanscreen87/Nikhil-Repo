@@ -11,6 +11,12 @@
     ad_username: "G538164"
     ad_employeeType: "Ansible"
 
+- name: Ensure necessary python packages are installed for the correct interpreter    
+    ansible.builtin.pip:    
+      name:    
+          - Install pywinrm
+  delegate_to: localhost
+
   tasks:
     - name: Update EmployeeType Attribute
       win_shell: |
