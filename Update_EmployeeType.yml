@@ -14,7 +14,7 @@
 - name: Ensure necessary python packages are installed for the correct interpreter    
     ansible.builtin.pip:    
       name:    
-          - Install pywinrm
+          - pywinrm
   delegate_to: localhost
 
   tasks:
