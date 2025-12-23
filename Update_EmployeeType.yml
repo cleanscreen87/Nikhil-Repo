@@ -11,18 +11,9 @@
     ad_username: "G538164"
     ad_employeeType: "Ansible"
 
-- name: Ensure necessary python packages are installed for the correct interpreter    
-    ansible.builtin.pip:    
-      name:    
-          - pywinrm
-  delegate_to: localhost
-
   tasks:
     - name: Update EmployeeType Attribute
       win_shell: |
         Import-Module ActiveDirectory
-        Get-ADUser -Identity G538164
-        # Set-ADUser -Identity "{{ ad_username }}" -Replace @{employeeType="{{ ad_employeeType }}"}
-
-
-
+        Set-ADUser -Identity "{{ ad_username }}" `
+          -Replace @{employeeType="{{ ad_employeeType }}"}
