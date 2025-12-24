@@ -1,5 +1,10 @@
-- name: Test AD user lookup
-  ansible.windows.win_shell: |
-    Import-Module ActiveDirectory
-    Get-ADUser -Identity "{{ ad_username }}"
+---
+- name: Test AD connectivity
+  hosts: ad_servers
+  gather_facts: no
+
+  tasks:
+    - name: Test WinRM + Windows EE
+      ansible.windows.win_ping:
+
 
