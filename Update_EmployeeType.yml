@@ -13,7 +13,6 @@
 
   tasks:
     - name: Update EmployeeType Attribute
-      win_shell: |
         Import-Module ActiveDirectory
         Set-ADUser -Identity "{{ ad_username }}" `
           -Replace @{employeeType="{{ ad_employeeType }}"}
