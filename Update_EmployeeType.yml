@@ -1,10 +1,14 @@
 ---
-- name: Test AD connectivity
+- name: Test WinRM + Windows EE
   hosts: ad_servers
   gather_facts: no
 
+  collections:
+    - ansible.windows
+
   tasks:
-    - name: Test WinRM + Windows EE
-      ansible.windows.win_ping:
+    - name: Test connectivity
+      win_ping:
+
 
 
